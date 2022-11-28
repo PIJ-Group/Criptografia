@@ -4,7 +4,6 @@ import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -13,7 +12,6 @@ import javax.swing.JOptionPane;
 
 public class Criptografia {
 
-	static Scanner entrada = new Scanner(System.in);
 	private static ArrayList<Usuario> usuarios;
 	private static String passwordUserHash;
 
@@ -156,7 +154,7 @@ public class Criptografia {
 		MessageDigest md = MessageDigest.getInstance("SHA-512");
 		md.update(password);
 		
-		//Con el método digest obtenemos el resumen de la casena hash
+		//Con el método digest obtenemos el resumen de la cadena hash
 		byte[] passwordHash = md.digest();
 		
 		//Lo pasamos a String para poder almacenarlo en la pass del usuario y poder comparar
