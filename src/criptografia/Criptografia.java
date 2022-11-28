@@ -115,6 +115,7 @@ public class Criptografia {
 								JOptionPane.showMessageDialog(null,
 										"Opción no valida, \nVuelva a escoger una opción valida", "Advertencia", 2);
 								break;
+								
 							}
 
 						} while (!mensaje.equals("0"));
