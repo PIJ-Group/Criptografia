@@ -14,7 +14,6 @@ public class Criptografia {
 
 	private static ArrayList<Usuario> usuarios;
 	
-
 	public static void main(String[] args) {
 
 		KeyGenerator generador;
