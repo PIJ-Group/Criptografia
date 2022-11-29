@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class Criptografia {
 
 	private static ArrayList<Usuario> usuarios;
+	
 
 	public static void main(String[] args) {
 
