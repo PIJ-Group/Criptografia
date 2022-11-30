@@ -61,8 +61,7 @@ public class Criptografia {
 						if (us.getNombre().equals(usuario) && us.getContraseña().equals(hash(contraseña))) {
 
 							do {
-
-								intentos = 0;
+			
 								mensaje = menu();
 
 								switch (mensaje) {
