@@ -12,29 +12,50 @@ import javax.swing.JOptionPane;
 
 public class Criptografia {
 
-	private static ArrayList<Usuario> usuarios;
+	/* 
+	 * JORGE
+	 * private static ArrayList<Usuario> usuarios; 
+	 * Me he dado cuenta que al tener el array dentro del primer try, no sirve para nada declararlo static.
+	 * Lo he declarado en la propia línea donde creamos el ArrayList, si lo veis bien, borrad todo este comentario y la declaración.
+	*/
 
 	public static void main(String[] args) {
 
-		KeyGenerator generador;
+		/*
+		 * JORGE
+		 * KeyGenerator generador;
+		 * Lo mismo que en la declaración anterior, al tenterlo en el primer try, y solo utilizarlo ahí, no hace falta ponerlo fuera.
+		 * Igual que en el anterior, si lo veis bien, borradlo.
+		 */
 
 		try {
 
+			/*
+			 * JORGE
+			 * He reordenado la declaración de las variables, teníamos creado el KeyGenerador y el SecretKey,
+			 * y después solo declarábamos las variables para volver a crear después más objetos.
+			 * He dejado todas las declaraciones arriba del KeyGenerator.
+			 * También he borrado la declaración de las dos siguientes de las he declarado donde creamos el objeto,
+			 * ya que solo son de ámbito del bloque donde trabaja y para que podamos entenderlo mejor para repasar,
+			 * así vemos donde se ha ido creando todo, solo dejo las que hay que declararlas ahí porque se utilizan en más sitios.
+			 * Lo mismo de antes, si lo veis bien, se borra.
+			 * byte[] bytesMensajeOriginal = null;
+			 * String frase = null;
+			 */
+			
+			Cipher cifrador = null;
+			byte[] bytesMensajeOriginalCifrado = null;
+			String mensaje = "";
+			int intentos = 0;
+			
 			// Creamos el generador de la clave
-			generador = KeyGenerator.getInstance("AES");
+			KeyGenerator generador = KeyGenerator.getInstance("AES");
 
 			// Generamos la clase simétrica
 			SecretKey Eternal = generador.generateKey();
 
-			Cipher cifrador = null;
-			byte[] bytesMensajeOriginal = null;
-			byte[] bytesMensajeOriginalCifrado = null;
-
-			String frase = null;
-			String mensaje = "";
-
 			// Creamos los objetos Usuario añadidos directamente a la lista
-			usuarios = new ArrayList<>();
+			ArrayList<Usuario> usuarios = new ArrayList<>();
 			usuarios.add(new Usuario("Conan", "pass1"));
 			usuarios.add(new Usuario("Arthur", "pass2"));
 			usuarios.add(new Usuario("Mike", "pass3"));
@@ -44,8 +65,6 @@ public class Criptografia {
 
 			for (Usuario us : usuarios)
 				hash(us);
-
-			int intentos = 0;
 			
 			try {
 				
@@ -76,7 +95,7 @@ public class Criptografia {
 
 								case "1":
 
-									frase = JOptionPane.showInputDialog("Digite la frase a encriptar");
+									String frase = JOptionPane.showInputDialog("Digite la frase a encriptar");
 
 									// Ciframos la clave con el Objeto Cipher
 									cifrador = Cipher.getInstance("AES");
@@ -85,7 +104,7 @@ public class Criptografia {
 									cifrador.init(Cipher.ENCRYPT_MODE, Eternal);
 
 									// Ciframos el mensaje que ha escrito el usuario a bytes
-									bytesMensajeOriginal = frase.getBytes();
+									byte[] bytesMensajeOriginal = frase.getBytes();
 
 									bytesMensajeOriginalCifrado = cifrador.doFinal(bytesMensajeOriginal);
 									String mensajeCifrado = new String(bytesMensajeOriginalCifrado);
@@ -174,7 +193,7 @@ public class Criptografia {
 		MessageDigest md = MessageDigest.getInstance("SHA-512");
 		md.update(password);
 
-		// Con el método digest obtenemos el resumen de la casena hash
+		// Con el método digest obtenemos el resumen de la cadena hash
 		byte[] passwordHash = md.digest();
 
 		// Lo pasamos a String para poder almacenarlo en la pass del usuario y poder
@@ -199,7 +218,7 @@ public class Criptografia {
 			MessageDigest md = MessageDigest.getInstance("SHA-512");
 			md.update(password);
 
-			// Con el método digest obtenemos el resumen de la casena hash
+			// Con el método digest obtenemos el resumen de la cadena hash
 			byte[] passwordHash = md.digest();
 
 			// Lo pasamos a String para poder almacenarlo en la pass del usuario y poder
