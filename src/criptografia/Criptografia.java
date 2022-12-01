@@ -46,8 +46,11 @@ public class Criptografia {
 				hash(us);
 
 			int intentos = 0;
+			
 			try {
+				
 				do {
+					
 					String usuario = JOptionPane.showInputDialog("Introduzca su usuario");
 
 					String contraseña = JOptionPane.showInputDialog("Introduzca su contraseña");
@@ -92,7 +95,9 @@ public class Criptografia {
 									break;
 
 								case "2":
+									
 									try {
+										
 										// Configuramos el cifrador para que use la clave para desencriptar
 										cifrador.init(Cipher.DECRYPT_MODE, Eternal);
 
@@ -108,9 +113,12 @@ public class Criptografia {
 												"Mensaje Descifrado: " + new String(mensajeCifrado));
 
 										break;
+										
 									} catch (NullPointerException er) {
+										
 										JOptionPane.showMessageDialog(null, "Primero tienes que cifrar una frase");
 									}
+									
 								default:
 
 									JOptionPane.showMessageDialog(null,
@@ -118,6 +126,7 @@ public class Criptografia {
 									break;
 
 								}
+								
 							} while (!mensaje.equals("0"));
 
 						}
@@ -125,8 +134,11 @@ public class Criptografia {
 					}
 
 				} while (intentos < 3 && !mensaje.equals("0"));
+				
 			} catch (NullPointerException er) {
+				
 				JOptionPane.showMessageDialog(null, "Has pulsado cancelar");
+				
 			}
 
 			if (intentos >= 3) {
@@ -135,20 +147,25 @@ public class Criptografia {
 			}
 
 		} catch (GeneralSecurityException sge) {
+			
 			JOptionPane.showMessageDialog(null, "Número máximo de intentos permitidos");
 			sge.printStackTrace();
+			
 		}
 	}
 
 	public static String menu() {
+		
 		String mensaje = JOptionPane
 				.showInputDialog("Bienvenido/a a Crypt \n" + "Elija una de las siguietes opciones: \n"
 						+ "0. Salir del programa \n" + "1. Encriptar frase \n" + "2. Desencriptar frase \n ");
 
 		return mensaje;
+		
 	}
 
 	public static void hash(Usuario usuario) throws NoSuchAlgorithmException {
+		
 		// Creamos los bytes de las contraseñas
 		byte[] password = usuario.getContraseña().getBytes();
 
@@ -167,10 +184,13 @@ public class Criptografia {
 
 		// Setteamos el hash de la contraseña
 		usuario.setContraseña(passwordUserHash);
+		
 	}
 
 	public static String hash(String contraseña) throws NoSuchAlgorithmException {
+		
 		try {
+			
 			// Creamos los bytes de las contraseñas
 			byte[] password = contraseña.getBytes();
 
@@ -186,9 +206,12 @@ public class Criptografia {
 			// comparar
 			String passwordUserHash = new String(passwordHash);
 			return passwordUserHash;
+			
 		} catch (NullPointerException n) {
+			
 			JOptionPane.showMessageDialog(null, "Has pulsado cancelar");
 			return null;
+			
 		}
 
 	}
