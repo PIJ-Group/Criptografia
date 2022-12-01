@@ -71,6 +71,9 @@ public class Criptografia {
 				do {
 					
 					String usuario = JOptionPane.showInputDialog("Introduzca su usuario");
+					if(usuario == null) { // ISRA PARA SALIR AL PULSAR CANCELAR
+						intentos=4;
+					}
 
 					String contraseña = JOptionPane.showInputDialog("Introduzca su contraseña");
 
@@ -160,7 +163,7 @@ public class Criptografia {
 				
 			}
 
-			if (intentos >= 3) {
+			if (intentos == 3) {// ISRA PARA SALIR AL PULSAR CANCELAR
 
 				JOptionPane.showMessageDialog(null, "Número máximo de intentos permitidos\nPrograma terminado");
 			}
