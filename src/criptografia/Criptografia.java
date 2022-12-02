@@ -76,6 +76,10 @@ public class Criptografia {
 					}
 
 					String contraseña = JOptionPane.showInputDialog("Introduzca su contraseña");
+					
+					if(contraseña == null) { // ISRA PARA SALIR AL PULSAR CANCELAR
+						intentos = 4;
+					}
 
 					hash(contraseña);
 
